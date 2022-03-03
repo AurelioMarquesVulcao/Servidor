@@ -1,0 +1,10 @@
+docker run -d -p 9090:9090 \
+ --name prometheus \
+ -v prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
+ prom/prometheus
+
+
+
+docker build -t prometheus .
+
+docker run -t -p 9090:9090 -d --restart=unless-stopped prometheus
