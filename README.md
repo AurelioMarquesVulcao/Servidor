@@ -17,7 +17,7 @@ Usando o docker eu posso escolher volumes que fazem sentido inclusive colocar to
     Serviço web de download de torrents <br>
     Funciona de forma semelante ao tranmition do linux porém como um seviço web dockerizado eu escalo sua funcionalidade. Onde até mesmo do celular posso abrir um download de torrent e acessar os arquivos baixados ou pelo serviço de stream de video ou pelo serviço de armazenamento de nuvem.
 </p>
-<p style=padding-left:25px> Skill </p>
+<p style=padding-left:25px;color:#1520a6> Skill </p>
 <p style=padding-left:25px> 1 - Baixa arquivos ja dentro da pasta do servidos de mídia. </p>
 <p style=padding-left:25px> 2 - Baixa arquivos ja dentro da nuvem de arquivos pessoais. </p>
 <p style=padding-left:25px> 3 - Baixar um arquivo apartir de qualquer dispositivo. </p>
