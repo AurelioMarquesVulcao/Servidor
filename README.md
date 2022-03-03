@@ -1,6 +1,9 @@
 # Servidor  0.0.1
 Este ambiente permite subir meu servidor local usando o docker como controlador de ambientes e serviços.
 
+![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)
+![Tor](https://img.shields.io/badge/Tor-7D4698?style=for-the-badge&logo=Tor-Browser&logoColor=white)
+![Safari](https://img.shields.io/badge/Safari-000000?style=for-the-badge&logo=Safari&logoColor=white)
 ## Justificativas
 Ao iniciarmos o processo de subir varios ambientes no servidor tornamos o mesmo lento e com uma inicialização muito lenta.
 <hr>
@@ -21,3 +24,7 @@ Usando o docker eu posso escolher volumes que fazem sentido inclusive colocar to
 <p style=padding-left:25px> 1 - Baixa arquivos ja dentro da pasta do servidos de mídia. </p>
 <p style=padding-left:25px> 2 - Baixa arquivos ja dentro da nuvem de arquivos pessoais. </p>
 <p style=padding-left:25px> 3 - Baixar um arquivo apartir de qualquer dispositivo. </p>
+
+link: https://github.com/Ileriayo/markdown-badges
+link: https://github.com/Naereen/badges
+link: https://naereen.github.io/badges/
