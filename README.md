@@ -1,9 +1,14 @@
 # Servidor  0.0.1
 Este ambiente permite subir meu servidor local usando o docker como controlador de ambientes e serviços.
 
-![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)
-![Tor](https://img.shields.io/badge/Tor-7D4698?style=for-the-badge&logo=Tor-Browser&logoColor=white)
-![Safari](https://img.shields.io/badge/Safari-000000?style=for-the-badge&logo=Safari&logoColor=white)
+[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![GitHub branches](https://badgen.net/github/branches/AurelioMarquesVulcao/Servidor)](https://github.com/AurelioMarquesVulcao/Servidor/)
+[![GitHub commits](https://badgen.net/github/commits/AurelioMarquesVulcao/Servidor)](https://github.com/AurelioMarquesVulcao/Servidor/)
+
+
+
+
 ## Justificativas
 Ao iniciarmos o processo de subir varios ambientes no servidor tornamos o mesmo lento e com uma inicialização muito lenta.
 <hr>
@@ -14,6 +19,10 @@ Usando o docker eu posso escolher volumes que fazem sentido inclusive colocar to
 <br>
 
 ## Serviços
+
+![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=Brave&logoColor=white)
+![Tor](https://img.shields.io/badge/Tor-7D4698?style=for-the-badge&logo=Tor-Browser&logoColor=white)
+![Safari](https://img.shields.io/badge/Safari-000000?style=for-the-badge&logo=Safari&logoColor=white)
     
 <h3 style=padding-left:15px;color:#DC143C> Transmition </h3>
 <p style=padding-left:25px> 
