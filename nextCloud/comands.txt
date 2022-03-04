@@ -18,3 +18,15 @@ docker run -d \
     -e NEXTCLOUD_ADMIN_PASSWORD=Aurelio2min2318 \
     --restart unless-stopped \
     nextcloud
+
+
+
+docker run -d \
+    --name=nextcloudHD \
+    -p 8080:80 \
+    -v /media/meta/1\ tera/nextdata:/var/www/html/data \
+    -e NEXTCLOUD_TRUSTED_DOMAINS=192.168.1.17 \
+    -e NEXTCLOUD_ADMIN_USER=aurelio \
+    -e NEXTCLOUD_ADMIN_PASSWORD=Aurelio2min2318 \
+    --restart unless-stopped \
+    nextcloud
