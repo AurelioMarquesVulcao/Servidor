@@ -1,0 +1,66 @@
+docker run -d \
+  --name=code-server \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e PASSWORD=aurelio2 \
+  -e SUDO_PASSWORD=aurelio2 \
+  -e DEFAULT_WORKSPACE=/config/workspace \
+  -p 8443:8443 \
+  -p 3000:3000 \
+  -v /home/meta/Documentos/config:/config \
+  --restart unless-stopped \
+  lscr.io/linuxserver/code-server
+
+
+docker build -t code-server .
+docker run -t -p 8443:8443 -p 3000:3000 -d --restart=unless-stopped code-server
+docker run -t -p 3333:3333 -d --restart=unless-stopped b_legado
+
+
+
+
+  docker run -d \
+  --name=code-server \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e PASSWORD=aurelio2 `#optional` \
+  -e HASHED_PASSWORD= `#optional` \
+  -e SUDO_PASSWORD=aurelio2 `#optional` \
+  -e SUDO_PASSWORD_HASH= `#optional` \
+  -p 8443:8443 \
+  -v /home/meta/Documentos/code/config:/config \
+  --restart unless-stopped \
+  lscr.io/linuxserver/code-server
+
+
+  docker run -d -it --name code-server \
+  -p 127.0.0.1:8080:8080 \
+  -v "/home/meta/Documentos/code/config:/home/coder/.config" \
+  -v "/home/meta/Documentos/code/projects:/home/coder/project" \
+  -u "$(id -u):$(id -g)" \
+  -e "DOCKER_USER=$USER" \
+  codercom/code-server:latest
+
+
+
+version: "2.1"
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PASSWORD=password #optional
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=password #optional
+      - SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=code-server.my.domain #optional
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+    volumes:
+      - /path/to/appdata/config:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
