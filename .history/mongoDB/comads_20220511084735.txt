@@ -1,0 +1,2 @@
+
+  docker run -d -p 27017:27017 -p 28017:28017 --restart unless-stopped --name=mongo -e MONGODB_PASS="meta1234" mongodb

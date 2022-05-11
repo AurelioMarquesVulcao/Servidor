@@ -11,7 +11,7 @@ VOLUME /home/meta/Documentos/config:/config
 VOLUME /home/meta/Documentos/code/workspace:/config 
 RUN apt-get update -y
 # install node and other skills
-RUN curl -sL https://deb.nodesource.com/setup_17.x -o nodesource_setup.sh
+RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt install nodejs
 RUN node -v
@@ -34,4 +34,4 @@ RUN apt install zsh -y
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
 EXPOSE 8443
 EXPOSE 3000 
-EXPOSE 8080
+

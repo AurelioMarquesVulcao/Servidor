@@ -1,0 +1,27 @@
+docker run -d \
+  --name=emby \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -p 8096:8096 \
+  -v /home/meta/Vídeos/config:/config \
+  -v /home/meta/Vídeos:/data/tvshows \
+  -v /home/meta/Vídeos:/data/movies \
+  --restart unless-stopped \
+  lscr.io/linuxserver/emby
+
+
+
+  docker run -d \
+  --name=embyHD \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -p 8096:8096 \
+  -v /media/meta/1\ tera/Vídeos/config:/config \
+  -v /media/meta/1\ tera/Vídeos:/data/tvshows \
+  -v /media/meta/1\ tera/Vídeos:/data/movies \
+  --restart unless-stopped \
+  lscr.io/linuxserver/emby
+
+  docker run -d -p 27017:27017 -p 28017:28017 -e MONGODB_PASS="mypass" tutum/mongodb
