@@ -1,0 +1,2 @@
+
+  docker run -d -p 27017:27017 -p 28017:28017 --restart unless-stopped --name=mongo -e MONGO_INITDB_ROOT_USERNAME=hen -e MONGO_INITDB_ROOT_PASSWORD=password -d mongo
