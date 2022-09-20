@@ -18,8 +18,8 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Europe/London \
   -p 8096:8096 \
-  -v /media/meta/1\ tera/Vídeos/config:/config \
-  -v /media/meta/1\ tera/Vídeos:/data/tvshows \
-  -v /media/meta/1\ tera/Vídeos:/data/movies \
+  -v /media/vulcao/1\ tera/Vídeos/config:/config \
+  -v /media/vulcao/1\ tera/Vídeos:/data/tvshows \
+  -v /media/vulcao/1\ tera/Vídeos:/data/movies \
   --restart unless-stopped \
   lscr.io/linuxserver/emby

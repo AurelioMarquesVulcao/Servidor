@@ -23,8 +23,8 @@ docker run -d \
   -e USER=aurelio \
   -e PASS=aurelio2 \
   -p 9091:9091 \
-  -v /media/meta/1\ tera/Vídeos/torrent/movies:/config \
-  -v /media/meta/1\ tera/Vídeos/torrent/movies:/downloads \
-  -v /media/meta/1\ tera/Vídeos/torrent/temp:/watch \
+  -v /media/vulcao/1\ tera/Vídeos/torrent/movies:/config \
+  -v /media/vulcao/1\ tera/Vídeos/torrent/movies:/downloads \
+  -v /media/vulcao/1\ tera/Vídeos/torrent/temp:/watch \
   --restart unless-stopped \
   lscr.io/linuxserver/transmission
