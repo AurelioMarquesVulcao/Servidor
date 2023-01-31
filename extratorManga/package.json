@@ -1,0 +1,21 @@
+{
+  "name": "extrator",
+  "version": "1.0.0",
+  "description": "extrator de url",
+  "main": "index.js",
+  "author": "Aurelio",
+  "license": "MIT",
+  "dependencies": {
+    "await-sleep": "^0.0.1",
+    "axios": "^1.2.4",
+    "cheerio": "^1.0.0-rc.12",
+    "fs": "^0.0.1-security",
+    "hummus": "^1.0.112",
+    "hummus-recipe": "^2.0.1",
+    "images-pdf": "^1.0.3",
+    "images-to-pdf": "^1.0.3",
+    "path": "^0.12.7",
+    "pdfkit": "^0.13.0",
+    "stream-to-promise": "^3.0.0"
+  }
+}
