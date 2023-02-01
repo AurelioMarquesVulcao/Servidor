@@ -24,7 +24,7 @@ const html = Fs.readFileSync('./html/01.html').toString()
 // var manga = "magical-daoist-priest"
 // var manga = "the-beginning"
 var manga = "one-piece"
-var urlManga = "https://mangayabu.top/ler/one-piece-capitulo-604-my12418/"
+var urlManga = "https://mangayabu.top/ler/one-piece-capitulo-701-my12892/"
 // var urlManga = "https://mangayabu.top/ler/yi-shijie-mofa-daoshi-otherworldly-magical-daoist-priest-capitulo-35-my1137823/"
 // var urlManga = "https://mangayabu.top/ler/yi-shijie-mofa-daoshi-otherworldly-magical-daoist-priest-capitulo-01-my1134054/"
 // var urlManga = "https://mangayabu.top/ler/the-beginning-after-the-end-capitulo-41-my119358/"
@@ -42,8 +42,8 @@ var parseProximoCapitulo = 'a[title="Próximo Capítulo"]'
 // var parseImages = 'img[gear="satoshi"]'
 // var parseProximoCapitulo = 'a[title="Próximo Capítulo"]' 
 // -------------------
-var capitulo = 604
-var capitulos = 700
+var capitulo = 701
+var capitulos = 1073
 var images = [
   
 

@@ -1,0 +1,22 @@
+docker run -d \
+  --name=ubooquity \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e MAXMEM=4gb \
+  -p 2202:2202 \
+  -p 2203:2203 \
+  -v /media/vulcao/1\ tera/Ebook/config:/config \
+  -v /media/vulcao/1\ tera/Ebook/books:/books \
+  -v /media/vulcao/1\ tera/Ebook/comics:/comics \
+  -v /media/vulcao/1\ tera/Ebook/files:/files \
+  --restart unless-stopped \
+  lscr.io/linuxserver/ubooquity:latest
+
+
+
+  docker run --name kavita -p 5000:5000 \
+-v /media/vulcao/1\ tera/kavita/manga:/manga \
+-v /media/vulcao/1\ tera/kavita/config:/kavita/config \
+--restart unless-stopped \
+-d kizaing/kavita:latest
