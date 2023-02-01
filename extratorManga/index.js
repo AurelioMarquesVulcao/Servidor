@@ -24,7 +24,7 @@ const html = Fs.readFileSync('./html/01.html').toString()
 // var manga = "magical-daoist-priest"
 // var manga = "the-beginning"
 var manga = "one-piece"
-var urlManga = "https://mangayabu.top/ler/one-piece-capitulo-600-my12411/"
+var urlManga = "https://mangayabu.top/ler/one-piece-capitulo-604-my12418/"
 // var urlManga = "https://mangayabu.top/ler/yi-shijie-mofa-daoshi-otherworldly-magical-daoist-priest-capitulo-35-my1137823/"
 // var urlManga = "https://mangayabu.top/ler/yi-shijie-mofa-daoshi-otherworldly-magical-daoist-priest-capitulo-01-my1134054/"
 // var urlManga = "https://mangayabu.top/ler/the-beginning-after-the-end-capitulo-41-my119358/"
@@ -42,30 +42,10 @@ var parseProximoCapitulo = 'a[title="Próximo Capítulo"]'
 // var parseImages = 'img[gear="satoshi"]'
 // var parseProximoCapitulo = 'a[title="Próximo Capítulo"]' 
 // -------------------
-var capitulo = 600
-var capitulos = 610
+var capitulo = 604
+var capitulos = 700
 var images = [
-  // 'downloads/one-piece/600/600one-piece0.jpg',
-  // 'downloads/one-piece/600/600one-piece1.jpg',
-  // 'downloads/one-piece/600/600one-piece2.jpg',
-  // 'downloads/one-piece/600/600one-piece3.jpg',
-  // 'downloads/one-piece/600/600one-piece4.jpg',
-  // 'downloads/one-piece/600/600one-piece5.jpg',
-  // 'downloads/one-piece/600/600one-piece6.jpg',
-  // 'downloads/one-piece/600/600one-piece7.jpg',
-  // 'downloads/one-piece/600/600one-piece8.jpg',
-  // 'downloads/one-piece/600/600one-piece9.jpg',
-  // 'downloads/one-piece/600/600one-piece10.jpg',
-  // 'downloads/one-piece/600/600one-piece11.jpg',
-  // 'downloads/one-piece/600/600one-piece12.jpg',
-  // 'downloads/one-piece/600/600one-piece13.jpg',
-  // 'downloads/one-piece/600/600one-piece14.jpg',
-  // 'downloads/one-piece/600/600one-piece15.jpg',
-  // 'downloads/one-piece/600/600one-piece16.jpg',
-  // 'downloads/one-piece/600/600one-piece17.jpg',
-  // 'downloads/one-piece/600/600one-piece18.jpg',
-  // 'downloads/one-piece/600/600one-piece17.jpg',
-  // 'controle'
+  
 
 ]
 
@@ -94,11 +74,8 @@ const parsePages = async (firstPage) => {
 
 
   await download(await parse(firstPage))
-  // console.log(images);
-  // await imagesToPdf(images, manga + capitulo + ".pdf")
-  // await sleep(15000)
-  // await sleep(20000)
   await pdf()
+
   console.log('Terminado capitulo ' + capitulo);
   capitulo++
   // await sleep(60000)
@@ -141,7 +118,7 @@ const parse = async (page) => {
 
   // REMOVE URL DESNECESSARIAS
   // url.shift()
-  url.pop()
+  // url.pop()
   url.shift()
 
   // console.log(url);
@@ -163,7 +140,11 @@ const download = async (link) => {
     for (i = 0; i < link.length; i++) {
       await sleep(2000)
       // console.log(link[i]);
-      name = capitulo + manga + i + '.jpg'
+      if (i < 10) {
+        name = capitulo + manga + '0' + i + '.jpg'
+      } else {
+        name = capitulo + manga + i + '.jpg'
+      }
       images.push("downloads/" + manga + '/' + capitulo + "/" + name)
       const url = link[i];
       const path = Path.resolve(__dirname, local, name);
@@ -205,53 +186,55 @@ const download = async (link) => {
 const pdf = async () => {
   console.log(images);
   console.log("Gerando 1 pdf");
-  await new ImagesToPDF.ImagesToPDF().convertFolderToPDF('downloads/' + manga, manga + '001.pdf');
-  // await new ImagesToPDF.ImagesToPDF().convertFolderToPDF('downloads/' + manga + '/' + capitulo, 'cap' + capitulo + manga + '.pdf');
+  // await new ImagesToPDF.ImagesToPDF().convertFolderToPDF('downloads/' + manga, manga + '001.pdf');
+  await new ImagesToPDF.ImagesToPDF().convertFolderToPDF('downloads/' + manga + '/' + capitulo, 'pdf/cap-' + capitulo + manga + '.pdf');
   // await sleep(40000)
   // console.log("Gerando 2 pdf");
-  const arquivo = 'cap' + capitulo + manga + '.pdf'
-  await imagesToPdf(images, arquivo)
 
-  
-  async function imagesToPdf(paths, resultPath) {
-    if (!Array.isArray(paths) || paths.length === 0) {
-      throw new Error("Must have at least one path in array")
-    }
-    const pdfWriter = hummus.createWriter(resultPath)
-    console.log("-----------------------------");
-    console.log(paths);
-    console.log("-----------------------------");
-    console.log(resultPath);
-    console.log("-----------------------------");
-    // paths.forEach(async path => {
-    //   const { width, height } = pdfWriter.getImageDimensions(path)
-    //   const page = pdfWriter.createPage(0, 0, width, height)
-    //   pdfWriter.startPageContentContext(page).drawImage(0, 0, path)
-    //   pdfWriter.writePage(page)
-    // })
-    for (i = 0; i < paths.length-2; i++) {
-      try {
-        let path = paths[i]
-        console.log(path);
-        console.log(i);
-        
-        const { width, height } = pdfWriter.getImageDimensions(path)
-        
-        console.log(pdfWriter.getImageDimensions(path));
-        const page = pdfWriter.createPage(0, 0, width, height)
-        console.log(page);
-        pdfWriter.startPageContentContext(page).drawImage(0, 0, path)
-        pdfWriter.writePage(page)
-        await sleep(1000)
-      } catch (e) { console.log(e); }
-    }
-  
-    // await sleep(1000)
-    pdfWriter.end()
-    await streamToPromise(pdfWriter)
-    return resultPath
-  }
-  
+
+  // const arquivo = 'cap' + capitulo + manga + '.pdf'
+  // await imagesToPdf(images, arquivo)
+
+
+  // async function imagesToPdf(paths, resultPath) {
+  //   if (!Array.isArray(paths) || paths.length === 0) {
+  //     throw new Error("Must have at least one path in array")
+  //   }
+  //   const pdfWriter = hummus.createWriter(resultPath)
+  //   console.log("-----------------------------");
+  //   console.log(paths);
+  //   console.log("-----------------------------");
+  //   console.log(resultPath);
+  //   console.log("-----------------------------");
+  //   // paths.forEach(async path => {
+  //   //   const { width, height } = pdfWriter.getImageDimensions(path)
+  //   //   const page = pdfWriter.createPage(0, 0, width, height)
+  //   //   pdfWriter.startPageContentContext(page).drawImage(0, 0, path)
+  //   //   pdfWriter.writePage(page)
+  //   // })
+  //   for (i = 0; i < paths.length-2; i++) {
+  //     try {
+  //       let path = paths[i]
+  //       console.log(path);
+  //       console.log(i);
+
+  //       const { width, height } = pdfWriter.getImageDimensions(path)
+
+  //       console.log(pdfWriter.getImageDimensions(path));
+  //       const page = pdfWriter.createPage(0, 0, width, height)
+  //       console.log(page);
+  //       pdfWriter.startPageContentContext(page).drawImage(0, 0, path)
+  //       pdfWriter.writePage(page)
+  //       await sleep(1000)
+  //     } catch (e) { console.log(e); }
+  //   }
+
+  //   // await sleep(1000)
+  //   pdfWriter.end()
+  //   await streamToPromise(pdfWriter)
+  //   return resultPath
+  // }
+
 
 
 
@@ -266,3 +249,4 @@ const pdf = async () => {
 // https://mangayabu.top/ler/i-am-the-sorcerer-king-capitulo-01-my122853/
 parsePages(urlManga)
 
+// "https://mangayabu.top/ler/player-who-returned-10000-years-later-capitulo-01-my1054161/"
