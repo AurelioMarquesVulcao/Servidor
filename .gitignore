@@ -106,8 +106,8 @@ dist
 .downloads/
 downloads/
 
-# .node_modules/
-# node_modules/
+.node_modules/
+node_modules/
 
 html/
 .html/
