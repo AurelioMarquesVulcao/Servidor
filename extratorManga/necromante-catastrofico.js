@@ -7,9 +7,9 @@ const Redis = require("ioredis");
 const redis = new Redis();
 
 // Variáveis para título e intervalo de capítulos
-const titulo = "nanotecnologia-marcial"; // Título do mangá ou da página
+const titulo = "necromante-catastrofico"; // Título do mangá ou da página
 const inicio = 1; // Número inicial do capítulo
-const fim = 249; // Número final do capítulo
+const fim = 160; // Número final do capítulo
 
 // Seletor da div que contém as imagens
 const imageContainerSelector = ".page-break.no-gaps";
@@ -74,6 +74,7 @@ const extractImages = async (url, capitulo) => {
 const extractMultipleChapters = async (inicio, fim) => {
   const delay = fim > 150 ? 30000 : fim > 100 ? 10000 : fim > 50 ? 5000 : 0;
   for (let capitulo = inicio; capitulo <= fim; capitulo++) {
+    // const capituloStr = capitulo.toString().padStart(2, "0"); // Formata o número do capítulo com zeros à esquerda
     const capituloStr = capitulo.toString().padStart(3, "0"); // Formata o número do capítulo com zeros à esquerda
     const url = `https://remangas.net/manga/${titulo}/capitulo-${capituloStr}/`;
     console.log(url);

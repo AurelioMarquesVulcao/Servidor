@@ -7,9 +7,9 @@ const Redis = require("ioredis");
 const redis = new Redis();
 
 // Variáveis para título e intervalo de capítulos
-const titulo = "nanotecnologia-marcial"; // Título do mangá ou da página
+const titulo = "heroi-x-rainha-dos-demonios/"; // Título do mangá ou da página
 const inicio = 1; // Número inicial do capítulo
-const fim = 249; // Número final do capítulo
+const fim = 143; // Número final do capítulo
 
 // Seletor da div que contém as imagens
 const imageContainerSelector = ".page-break.no-gaps";
@@ -35,21 +35,29 @@ const extractImages = async (url, capitulo) => {
 
   let imageUrls = [];
 
-  $(imageContainerSelector)
-    .find("img")
-    .each((index, element) => {
-      let imgUrl = $(element).attr("src");
+  $(imageContainerSelector).each((index, element) => {
+    const imgElement = $(element).find("img");
+    if (imgElement.length > 0) {
+      let imgUrl = imgElement.attr("src");
       if (imgUrl) {
         imgUrl = imgUrl.replace(/^[\s\t\n]+/, "").match(/https?.*/)?.[0] || ""; // Remove espaços extras e captura apenas a URL a partir de http
         if (imgUrl) {
           imageUrls.push(imgUrl);
         }
       }
-    });
+    } else {
+      console.log("Nenhuma imagem encontrada nesta div.");
+    }
+  });
 
   // Salva as URLs das imagens em um arquivo JSON
-  // fs.writeFileSync(`images-${capitulo}.json`, JSON.stringify(imageUrls, null, 2));
-  // console.log(`URLs das imagens do capítulo ${capitulo} salvas em images-${capitulo}.json`);
+  //   fs.writeFileSync(
+  //     `images-${capitulo}.json`,
+  //     JSON.stringify(imageUrls, null, 2)
+  //   );
+  console.log(
+    `URLs das imagens do capítulo ${capitulo} salvas em images-${capitulo}.json`
+  );
 
   // Adiciona as URLs à fila do Redis
   for (let index = 0; index < imageUrls.length; index++) {
@@ -70,15 +78,17 @@ const extractImages = async (url, capitulo) => {
   }
 };
 
-// Função para iterar sobre os capítulos e extrair as imagens
+// Função para iterar sobre os capítulos e extrair as imagens com espera condicional
 const extractMultipleChapters = async (inicio, fim) => {
   const delay = fim > 150 ? 30000 : fim > 100 ? 10000 : fim > 50 ? 5000 : 0;
+
   for (let capitulo = inicio; capitulo <= fim; capitulo++) {
-    const capituloStr = capitulo.toString().padStart(3, "0"); // Formata o número do capítulo com zeros à esquerda
+    const capituloStr = capitulo.toString().padStart(2, "0"); // Formata o número do capítulo com zeros à esquerda
     const url = `https://remangas.net/manga/${titulo}/capitulo-${capituloStr}/`;
     console.log(url);
 
     await extractImages(url, capituloStr);
+
     if (delay > 0) {
       console.log(
         `Esperando ${

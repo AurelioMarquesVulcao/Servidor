@@ -9,7 +9,7 @@ const redis = new Redis();
 // Variáveis para título e intervalo de capítulos
 const titulo = "cavaleiro-santo-de-grau-sss"; // Título do mangá ou da página
 const inicio = 1; // Número inicial do capítulo
-const fim = 2; // Número final do capítulo
+const fim = 61; // Número final do capítulo
 
 // Seletor da div que contém as imagens
 const imageContainerSelector = ".page-break.no-gaps";
@@ -28,8 +28,6 @@ const fetchHTML = async (url) => {
 // Função para processar o HTML e extrair as URLs das imagens
 const extractImages = async (url, capitulo) => {
   const html = await fetchHTML(url);
-  
-
   if (!html) return;
 
   const $ = cheerio.load(html);
@@ -37,25 +35,26 @@ const extractImages = async (url, capitulo) => {
 
   let imageUrls = [];
 
-  $(imageContainerSelector)
-    .find("img")
-    .each((index, element) => {
-      let imgUrl = $(element).attr("src");
-      console.log(imgUrl);
-
+  $(imageContainerSelector).each((index, element) => {
+    const imgElement = $(element).find("img");
+    if (imgElement.length > 0) {
+      let imgUrl = imgElement.attr("src");
       if (imgUrl) {
         imgUrl = imgUrl.replace(/^[\s\t\n]+/, "").match(/https?.*/)?.[0] || ""; // Remove espaços extras e captura apenas a URL a partir de http
         if (imgUrl) {
           imageUrls.push(imgUrl);
         }
       }
-    });
+    } else {
+      console.log("Nenhuma imagem encontrada nesta div.");
+    }
+  });
 
   // Salva as URLs das imagens em um arquivo JSON
-  fs.writeFileSync(
-    `images-${capitulo}.json`,
-    JSON.stringify(imageUrls, null, 2)
-  );
+  //   fs.writeFileSync(
+  //     `images-${capitulo}.json`,
+  //     JSON.stringify(imageUrls, null, 2)
+  //   );
   console.log(
     `URLs das imagens do capítulo ${capitulo} salvas em images-${capitulo}.json`
   );
@@ -82,7 +81,10 @@ const extractImages = async (url, capitulo) => {
 // Função para iterar sobre os capítulos e extrair as imagens
 const extractMultipleChapters = async (inicio, fim) => {
   for (let capitulo = inicio; capitulo <= fim; capitulo++) {
-    const capituloStr = capitulo.toString().padStart(3, "0"); // Formata o número do capítulo com zeros à esquerda
+    // const capituloStr = capitulo.toString().padStart(3, "0"); // Formata o número do capítulo com zeros à esquerda
+    const capituloStr = capitulo.toString().padStart(2, "0"); // Formata o número do capítulo com zeros à esquerda
+    console.log(capituloStr);
+
     const url = `https://remangas.net/manga/${titulo}/capitulo-${capituloStr}/`;
     console.log(url);
 
