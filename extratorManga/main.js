@@ -9,7 +9,7 @@ const redis = new Redis();
 // Variáveis para título e intervalo de capítulos
 const titulo = 'o-lixo-da-familia-condal';  // Título do mangá ou da página
 const inicio = 1;  // Número inicial do capítulo
-const fim = 147;    // Número final do capítulo
+const fim = 143;    // Número final do capítulo
 
 // Seletor da div que contém as imagens
 const imageContainerSelector = '.page-break.no-gaps';
