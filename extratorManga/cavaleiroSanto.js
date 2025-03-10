@@ -14,14 +14,30 @@ const fim = 61; // Número final do capítulo
 // Seletor da div que contém as imagens
 const imageContainerSelector = ".page-break.no-gaps";
 
-// Função para capturar o HTML do site
+// Função para capturar o HTML do site com repetição em caso de erro
 const fetchHTML = async (url) => {
-  try {
-    const { data } = await axios.get(url);
-    return data;
-  } catch (error) {
-    console.error("Erro ao buscar a página:", error);
-    return null;
+  const maxRetries = 3; // Número máximo de tentativas
+  const delay = 60000; // Tempo de espera em milissegundos (1 minuto)
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const { data } = await axios.get(url);
+      return data;
+    } catch (error) {
+      console.error(`Erro ao buscar a página (tentativa ${attempt}):`, error);
+      if (
+        error.response &&
+        error.response.status === 520 &&
+        attempt < maxRetries
+      ) {
+        console.log(
+          `Esperando ${delay / 1000} segundos antes de tentar novamente...`
+        );
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      } else {
+        return null;
+      }
+    }
   }
 };
 

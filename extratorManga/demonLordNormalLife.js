@@ -7,9 +7,9 @@ const Redis = require("ioredis");
 const redis = new Redis();
 
 // Variáveis para título e intervalo de capítulos
-const titulo = "eu-tenho-uma-mansao-no-m7undo-pos-ap8oca9liptico"; // Título do mangá ou da página
-const inicio = 70; // Número inicial do capítulo
-const fim = 260; // Número final do capítulo
+const titulo = "o-demonio-celestial-nao-pode-viver-uma-vida-normal"; // Título do mangá ou da página
+const inicio = 1; // Número inicial do capítulo
+const fim = 145; // Número final do capítulo
 
 // Seletor da div que contém as imagens
 const imageContainerSelector = ".page-break.no-gaps";
