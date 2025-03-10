@@ -7,9 +7,9 @@ const Redis = require("ioredis");
 const redis = new Redis();
 
 // Variáveis para título e intervalo de capítulos
-const titulo = "eu-tenho-uma-mansao-no-m7undo-pos-ap8oca9liptico"; // Título do mangá ou da página
-const inicio = 70; // Número inicial do capítulo
-const fim = 260; // Número final do capítulo
+const titulo = "rei-do-gado"; // Título do mangá ou da página
+const inicio = 1; // Número inicial do capítulo
+const fim = 523; // Número final do capítulo
 
 // Seletor da div que contém as imagens
 const imageContainerSelector = ".page-break.no-gaps";
@@ -25,15 +25,9 @@ const fetchHTML = async (url) => {
       return data;
     } catch (error) {
       console.error(`Erro ao buscar a página (tentativa ${attempt}):`, error);
-      if (
-        error.response &&
-        error.response.status === 520 &&
-        attempt < maxRetries
-      ) {
-        console.log(
-          `Esperando ${delay / 1000} segundos antes de tentar novamente...`
-        );
-        await new Promise((resolve) => setTimeout(resolve, delay));
+      if (error.response && error.response.status === 520 && attempt < maxRetries) {
+        console.log(`Esperando ${delay / 1000} segundos antes de tentar novamente...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
       } else {
         return null;
       }
@@ -90,8 +84,8 @@ const extractImages = async (url, capitulo) => {
 const extractMultipleChapters = async (inicio, fim) => {
   const delay = fim > 150 ? 30000 : fim > 100 ? 10000 : fim > 50 ? 5000 : 0;
   for (let capitulo = inicio; capitulo <= fim; capitulo++) {
-    const capituloStr = capitulo.toString().padStart(2, "0"); // Formata o número do capítulo com zeros à esquerda
-    // const capituloStr = capitulo.toString().padStart(3, "0"); // Formata o número do capítulo com zeros à esquerda
+    // const capituloStr = capitulo.toString().padStart(2, "0"); // Formata o número do capítulo com zeros à esquerda
+    const capituloStr = capitulo.toString().padStart(3, "0"); // Formata o número do capítulo com zeros à esquerda
     const url = `https://remangas.net/manga/${titulo}/capitulo-${capituloStr}/`;
     console.log(url);
 

@@ -111,3 +111,6 @@ node_modules/
 
 html/
 .html/
+
+.extratorManga/src/extracao/
+extratorManga/src/extracao/
