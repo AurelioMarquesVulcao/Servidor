@@ -1,14 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 
-// Função para converter imagem para base64
+/**
+ * Converte uma imagem para base64.
+ * @param {string} caminhoImagem - Caminho do arquivo da imagem.
+ * @returns {string} - String base64 representando a imagem.
+ */
 function converterImagemParaBase64(caminhoImagem) {
     const imagem = fs.readFileSync(caminhoImagem);
     const extensao = path.extname(caminhoImagem).substring(1); // Obtém a extensão sem o ponto
     return `data:image/${extensao};base64,${imagem.toString('base64')}`;
 }
 
-// Função para gerar HTML com imagens
+/**
+ * Gera arquivos HTML para cada subpasta dentro de "src/downloads",
+ * organizando as imagens em ordem alfabética e salvando na pasta "src/extracao".
+ */
 async function gerarHTMLParaPastas() {
     const downloadsFolder = path.join('src', 'downloads');
     const extracaoFolder = path.join('src', 'extracao');
@@ -43,9 +50,11 @@ async function gerarHTMLParaPastas() {
 
             try {
                 const imagensPath = path.join(tituloPath, ordenador);
-                const imagens = fs.readdirSync(imagensPath)
-                    .filter(arquivo => arquivo.match(/\.(jpg|jpeg|png|gif)$/i))
-                    .sort(); // Ordena alfabeticamente
+                let imagens = fs.readdirSync(imagensPath)
+                    .filter(arquivo => arquivo.match(/\.(jpg|jpeg|png|gif)$/i));
+
+                // Ordena alfabeticamente
+                imagens.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
                 const imagensBase64 = imagens.map(imagem => {
                     const caminhoImagem = path.join(imagensPath, imagem);
@@ -92,14 +101,14 @@ async function gerarHTMLParaPastas() {
                 const htmlFilePath = path.join(tituloExtracaoFolder, `${ordenador}.html`);
                 fs.writeFileSync(htmlFilePath, htmlContent);
                 console.log(`HTML gerado: ${htmlFilePath}`);
-            } catch (error) {
+            } catch (error) {ui
                 console.error(`Erro ao gerar HTML para ${titulo} - ${ordenador}:`, error.message);
             }
         }
     }
 }
 
-// Intervalo de 5 minutos
+// Executa a função a cada 5 minutos
 setInterval(gerarHTMLParaPastas, 5 * 60 * 1000);
 
 gerarHTMLParaPastas();
